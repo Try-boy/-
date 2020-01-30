@@ -8,22 +8,22 @@ public class analysis_movies{
 	 //HTML
     private String html;
     private String hString;
-	//µçÓ°ĞÅÏ¢ÕıÔò
+	//ç”µå½±ä¿¡æ¯æ­£åˆ™
     private String MOVIE_NAME="<span property=\"v:itemreviewed\">(.*)(</span>)";
     private String MOVIE_DIRECTOR="director[\\s\\S]*?author";
     private String MOVIE_AUTHOR="author[\\s\\S]*?actor";
     private String MOVIE_ACTOR="actor[\\s\\S]*?datePublished";
     private String MOVIE_TYPE="v:genre\">(.*?)</span>";
-    private String MOVIE_COUTRY="ÖÆÆ¬¹ú¼Ò/µØÇø:</span>(.*)<br/>";
-    private String MOVIE_LANGUAGE="ÓïÑÔ:</span> (.*)<br/>";
+    private String MOVIE_COUTRY="åˆ¶ç‰‡å›½å®¶/åœ°åŒº:</span>(.*)<br/>";
+    private String MOVIE_LANGUAGE="è¯­è¨€:</span> (.*)<br/>";
     private String MOVIE_DATE="\"datePublished\": \"(.*)\"";
     private String MOVIE_TIME="\"v:runtime\".*>(.*?)</span>";
-    private String MOVIE_NANE2="ÓÖÃû:</span> (.*)<br/>";
+    private String MOVIE_NANE2="åˆå:</span> (.*)<br/>";
     private String MOVIE_SCORE="\"ratingValue\": \"(.*)\"";
     private String MOVIE_COUNT="\"ratingCount\": \"(.*)\"";
     private String MOVIE_DESCRIBE="(<span property=\"v:summary\" class=\"\">|<span class=\"all hidden\">)\n([\\s\\S]*?)</span>";
     private String NAME=" \"name\": \"(.*?)\\s";
-     //¶ÌÆÀÕıÔò
+     //çŸ­è¯„æ­£åˆ™
  	 private static String comments="<div class=\"avatar\">\n([\\s\\S]*?)</p>";
  	 private static String name2="<a title=\"(.*?)\" href";
  	 private static String like="title=\"(.*?)\"></span>";
@@ -41,41 +41,41 @@ public class analysis_movies{
     }    
      void match_movie(BufferedWriter bw) throws Exception 
      {
-    	 bw.write("µçÓ°Ãû×Ö:  ");
+    	 bw.write("ç”µå½±åå­—:  ");
 	     match1(MOVIE_NAME,bw);
-	     bw.write("ÓÖÃû:  ");
+	     bw.write("åˆå:  ");
 	     match1(MOVIE_NANE2,bw);
-	     bw.write("µ¼Ñİ:  ");
+	     bw.write("å¯¼æ¼”:  ");
 	     match2(MOVIE_DIRECTOR,bw);
-	     bw.write("±à¾ç:  ");
+	     bw.write("ç¼–å‰§:  ");
 	     match2(MOVIE_AUTHOR, bw);
-	     bw.write("Ö÷Ñİ:  ");
+	     bw.write("ä¸»æ¼”:  ");
 	     match2(MOVIE_ACTOR, bw);
-	     bw.write("ÀàĞÍ:  ");
+	     bw.write("ç±»å‹:  ");
 	     match1(MOVIE_TYPE, bw);
-	     bw.write("ÖÆÆ¬¹ú¼Ò/µØÇø:  ");
+	     bw.write("åˆ¶ç‰‡å›½å®¶/åœ°åŒº:  ");
 	     match1(MOVIE_COUTRY,bw);
-	     bw.write("ÓïÑÔ:  ");
+	     bw.write("è¯­è¨€:  ");
 	     match1(MOVIE_LANGUAGE,bw);
-	     bw.write("ÉÏÓ³ÈÕÆÚ:  ");
+	     bw.write("ä¸Šæ˜ æ—¥æœŸ:  ");
 	     match1(MOVIE_DATE,bw);
-	     bw.write("Æ¬³¤:  ");
+	     bw.write("ç‰‡é•¿:  ");
 	     match1(MOVIE_TIME, bw);
-	     bw.write("ÆÀ·Ö:  ");
+	     bw.write("è¯„åˆ†:  ");
 	     match1(MOVIE_SCORE,bw);
-	     bw.write("ÆÀ¼ÛÈËÊı:  ");
+	     bw.write("è¯„ä»·äººæ•°:  ");
 	     match1(MOVIE_COUNT, bw);
-	     bw.write("¾çÇé¼ò½é: \n");
+	     bw.write("å‰§æƒ…ç®€ä»‹: \n");
 	     match_describe(MOVIE_DESCRIBE,bw);
      }
      void match_comments(BufferedWriter bw) throws Exception
      {
-    	 bw.write("\nÈÈÃÅ¶ÌÆÀ: \n");
+    	 bw.write("\nçƒ­é—¨çŸ­è¯„: \n");
 	     Matcher matcher = Pattern.compile(comments).matcher(hString); 
          while(matcher.find())
          {           	   	
       	   String mString=matcher.group(1);
-      	   bw.write("ÓÃ»§£º");
+      	   bw.write("ç”¨æˆ·ï¼š");
       	   match_comments(name2, bw,mString);
       	   match_comments(see, bw,mString);
       	   match_comments(like, bw,mString);
@@ -134,7 +134,6 @@ public class analysis_movies{
   					  bw.write("  ");
   			} 	
        }
-       
 }
       
 	
